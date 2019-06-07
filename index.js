@@ -4,6 +4,7 @@ const express = require("express");
 const db = require('./data/db.js');
 
 const server = express();
+server.use(express.json())
 
 server.listen(3000, ()=>{
     console.log("Hello. API is running on port 3000.")
@@ -104,7 +105,7 @@ server.get("/api/users/:id", (req, res) => {
    server.post('/api/users', (req, res) => {
     const userInfo = req.body;
 
-    db.add(userInfo)
+    db.insert(userInfo)
       .then(user => {
           res.status(201).json({ success: true, user});
       })
