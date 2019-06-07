@@ -10,11 +10,16 @@ server.listen(3000, ()=>{
     console.log("Hello. API is running on port 3000.")
 })
 
+//This code is just a test to make sure server is working.
 server.get("/", (req,res)=> {
     res.send("Testing Server")
 })
 
 //--------------------------------------------------------
+
+//GET method: server.find()- returns an array of all thr user objects contained in the database.
+
+
 server.get("/api/users", (req, res) => {
     db.find()
     .then(users=> {
@@ -25,6 +30,8 @@ server.get("/api/users", (req, res) => {
 })
 
 //--------------------------------------------------------
+
+//GET method: server.findById()- returns the user object with the specified 'id'.
 
 server.get("/api/users/:id", (req, res) => {
     db.findById(req.params.id)
@@ -49,8 +56,10 @@ server.get("/api/users/:id", (req, res) => {
       });
    });
 
-   //----------------------------------------------------------
+//----------------------------------------------------------
 
+//DELETE method: server.remove - removes the user with the specified 'id' and returns
+// the deleted user.
 
  server.delete('api/users/:id', (req, res) => {
     const { id } = req.params;
@@ -74,8 +83,11 @@ server.get("/api/users/:id", (req, res) => {
       });
    });
 
-   //--------------------------------------------------------------
+//--------------------------------------------------------------
 
+//PUT method: serve.update() - Updates the user with the specified 'id' using
+// data from the 'request body'. returns the modified
+// document, NOT the original.
 
    server.put('/api/users/:id', (req, res) => {
     const { id } = req.params;
@@ -100,7 +112,10 @@ server.get("/api/users/:id", (req, res) => {
       });
    });
 
-   //-----------------------------------------------
+//-----------------------------------------------
+
+//POST method: server.insert() - creates a user using the information
+// sent inside the 'request body'.
 
    server.post('/api/users', (req, res) => {
     const userInfo = req.body;
