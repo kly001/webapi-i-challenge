@@ -1,14 +1,17 @@
 // implement your API here
 const express = require("express");
+const port = process.env.PORT || 3333
 
 const db = require('./data/db.js');
 
 const server = express();
 server.use(express.json())
 
-server.listen(3000, ()=>{
-    console.log("Hello. API is running on port 3000.")
-})
+
+server.listen(port, () => {
+  console.log(`\n*** Server Running on http://localhost:${port} ***\n`);
+});
+
 
 //This code is just a test to make sure server is working.
 server.get("/", (req,res)=> {

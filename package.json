@@ -4,7 +4,8 @@
   "description": "Express Demo",
   "main": "index.js",
   "scripts": {
-    "server": "nodemon index.js"
+    "server": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,7 @@
   },
   "homepage": "https://github.com/LambdaSchool/node-express-mini#readme",
   "devDependencies": {
-    "nodemon": "^1.19.1"
+    "nodemon": "^1.18.10"
   },
   "dependencies": {
     "express": "^4.17.1",
