@@ -17,7 +17,8 @@ server.get("/", (req,res)=> {
 
 //--------------------------------------------------------
 
-//GET method: server.find()- returns an array of all thr user objects contained in the database.
+//GET method: db.find()- returns an array of all the user 
+//objects contained in the database.
 
 
 server.get("/api/users", (req, res) => {
@@ -26,12 +27,15 @@ server.get("/api/users", (req, res) => {
         res.status(200).json(users)
     })
      .catch(err => {
-         res.status(500).json({success: false, err,})})
+         res.status(500).json({
+           success: false, 
+           err,
+          message:"The users information could not be retrieved."})})
 })
 
 //--------------------------------------------------------
 
-//GET method: server.findById()- returns the user object with the specified 'id'.
+//GET method: db.findById()- returns the user object with the specified 'id'.
 
 server.get("/api/users/:id", (req, res) => {
     db.findById(req.params.id)
@@ -51,14 +55,15 @@ server.get("/api/users/:id", (req, res) => {
       .catch(err => {
         res.status(500).json({
           success: false,
-          error: "The user information could not be retrieved.",
+          err,
+          message: "The user information could not be retrieved.",
         });
       });
    });
 
 //----------------------------------------------------------
 
-//DELETE method: server.remove - removes the user with the specified 'id' and returns
+//DELETE method: db.remove() - removes the user with the specified 'id' and returns
 // the deleted user.
 
  server.delete('api/users/:id', (req, res) => {
@@ -78,15 +83,16 @@ server.get("/api/users/:id", (req, res) => {
       .catch(err => {
         res.status(500).json({
           success: false,
-          error: "The user could not be removed",
+          err,
+          message:"The user could not be removed",
         });
       });
    });
 
 //--------------------------------------------------------------
 
-//PUT method: serve.update() - Updates the user with the specified 'id' using
-// data from the 'request body'. returns the modified
+//PUT method: db.update() - Updates the user with the specified 'id' using
+// data from the 'request body'; returns the modified
 // document, NOT the original.
 
    server.put('/api/users/:id', (req, res) => {
@@ -107,14 +113,15 @@ server.get("/api/users/:id", (req, res) => {
       .catch(err => {
         res.status(500).json({
           success: false,
-          error: "The user information could not be modified.",
+          err,
+          message: "The user information could not be modified.",
         });
       });
    });
 
 //-----------------------------------------------
 
-//POST method: server.insert() - creates a user using the information
+//POST method: db.insert() - creates a user using the information
 // sent inside the 'request body'.
 
    server.post('/api/users', (req, res) => {
@@ -128,6 +135,7 @@ server.get("/api/users/:id", (req, res) => {
           res.status(500).json({
               success: false,
               err,
+              message:"There was an error while saving the user to the database.",
           })
       })
 })
